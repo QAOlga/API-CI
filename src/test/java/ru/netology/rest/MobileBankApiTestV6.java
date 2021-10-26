@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class MobileBankApiTestV6 {
+class MobileBankApiTestV6 {
     private RequestSpecification requestSpec = new RequestSpecBuilder()
-            .setBaseUri("http://0.0.0.0:9999/api/v1")
-            .setBasePath("/demo/accounts")
+            .setBaseUri("http://localhost")
+            .setBasePath("/api/v1")
             .setPort(9999)
             .setAccept(ContentType.JSON)
             .setContentType(ContentType.JSON)
@@ -19,8 +19,8 @@ public class MobileBankApiTestV6 {
             .build();
 
     @Test
-    void shouldReturnDemoAccount() {
-// Given - When - Then
+    void shouldReturnDemoAccounts() {
+        // Given - When - Then
         // Предусловия
         given()
                 .spec(requestSpec) // со спецификацией проще (особенно когда много тестов)
@@ -29,7 +29,6 @@ public class MobileBankApiTestV6 {
                 .get("/demo/accounts")
                 // Проверки
                 .then()
-                .statusCode(404);
+                .statusCode(200);
     }
 }
-
